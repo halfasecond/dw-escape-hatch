@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { Contract } from 'web3-eth-contract'
+import { isAddress } from 'web3-validator'
 
 interface WalletDetails {
     authVersion?: string;
@@ -81,7 +82,6 @@ const Authorization: React.FC<AuthorizationProps> = ({ walletAddress, contract }
     return (
         <>
             <h2>Dapper Wallet: <code>{walletAddress}</code></h2>
-            <h2>AuthVersion: {walletDetails.authVersion}</h2>
             {authorizationSuccess ? (
                 <>
                     <h3>Success! New authorized / cosigner pair for this address is:</h3>
@@ -89,6 +89,9 @@ const Authorization: React.FC<AuthorizationProps> = ({ walletAddress, contract }
                 </>
             ) : (
                 <>
+                    <p>Use this form to add an Ethereum wallet as an authorized address to the Dapper wallet you're currently signed into.</p>
+                    <p>Ensure that you double-check the wallet address you've pasted to confirm it is correct.</p>
+                    <p>Once you're confident the address is correct, submit and sign the transaction.</p>
                     <label htmlFor={'newAuthorized'}>
                         {'Add new authorization:'}
                         <input
@@ -102,7 +105,7 @@ const Authorization: React.FC<AuthorizationProps> = ({ walletAddress, contract }
                         type="submit"
                         onClick={handleSetAuthorized}
                         value="Set new authorized address"
-                        disabled={walletDetails.newAuthorized === ''} // TODO - add better validation
+                        disabled={!isAddress(walletDetails.newAuthorized)}
                     />
                 </>
             )}

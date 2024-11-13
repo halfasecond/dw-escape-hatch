@@ -2,6 +2,7 @@ import { useState } from 'react'
 import dapperWalletAbi from '../../contracts/DapperWallet'
 import { getContract, prepareInvokeData } from '../../utils'
 import { WalletDetails } from 'types/auth'
+import { isAddress } from 'web3-validator'
 
 interface FormDetails {
     removeAuthorizedInput: string,
@@ -20,7 +21,7 @@ const Authorizations: React.FC<{ walletAddress: string, walletDetails: WalletDet
         const { value } = e.target
         const newState = { ...formDetails }
         newState[changeParam] = value
-        setFormDetails(newState) // TODO: add validation
+        setFormDetails(newState)
     }
 
     const handleAddAuthorized = async () => {
@@ -56,12 +57,12 @@ const Authorizations: React.FC<{ walletAddress: string, walletDetails: WalletDet
                         type="submit"
                         onClick={handleAddAuthorized}
                         value={'Set new authorized address'}
-                        disabled={formDetails.newAuthorizedInput === ''} // TODO - add better validation
+                        disabled={!isAddress(formDetails.newAuthorizedInput)}
                     />
                 </>
             ) : (
                 <>
-                    <h3>Success! New authorized / cosigner pair for this address is:</h3>
+                    <p><span className={'success'}>✓</span>Success! New authorized / cosigner pair for this address is:</p>
                     <code>{formDetails.newAuthorizedInput}</code>
                 </>
             )}

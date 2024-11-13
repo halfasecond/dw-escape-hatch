@@ -28,7 +28,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
     const [contract, setContract] = useState<Contract<AbiFragment[]> | undefined>(undefined)
     const [walletDetails, setWalletDetails] = useState<WalletDetails>({
         dapperWallet: undefined,
-        dapperWalletInput: '0x3Fddfc5275a4bc341F3Ea4B6Ff629747AF1Eed5E',
+        dapperWalletInput: '',
         cosigner: undefined,
     })
 
@@ -43,7 +43,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
         const { value } = e.target
         const newState = { ...walletDetails }
         newState[changeParam] = value
-        setWalletDetails(newState) // TODO: add validation
+        setWalletDetails(newState)
     }
 
     const handleSetDapperWallet = async () => {

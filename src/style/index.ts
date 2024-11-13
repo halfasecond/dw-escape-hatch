@@ -90,7 +90,7 @@ export const Main = styled.main`
         }
     }
     > p, > code {
-        > span {
+        > span:not(.success) {
             text-decoration: underline;
             cursor: pointer;
         } 

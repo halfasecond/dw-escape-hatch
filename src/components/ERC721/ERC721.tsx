@@ -3,6 +3,7 @@ import { getContract } from '../../utils'
 import { AbiFragment } from 'web3'
 import { Contract } from 'web3-eth-contract'
 import { abi } from '@openzeppelin/contracts/build/contracts/ERC721.json'
+import { isAddress } from 'web3-validator'
 
 export interface FormDetails {
     tokenId: string,
@@ -54,7 +55,7 @@ const ERC721: React.FC<{
     }, [contract])
 
     const handleSetContract = async () => {
-        if (formDetails.contractAddress !== '') { // TODO: add better validation / type checking
+        if (isAddress(formDetails.contractAddress)) {
             try {
                 const _abi = formDetails.contractAbi === '' ? abi : JSON.parse(formDetails.contractAbi)
                 const _contract = getContract(_abi, formDetails.contractAddress)
@@ -136,7 +137,7 @@ const ERC721: React.FC<{
                         {`Enter the abi of the NFT contract:`} <i>{`(optional)`}</i>
                         <textarea id={'contractAbi'} onChange={e => handleChange(e, 'contractAbi')} value={formDetails.contractAbi} disabled={formDetails.loading} />
                     </label>
-                    <button onClick={handleSetContract} disabled={formDetails.loading || formDetails.contractAddress === ''}>{'set contract'}</button>
+                    <button onClick={handleSetContract} disabled={formDetails.loading || !isAddress(formDetails.contractAddress)}>{'set contract'}</button>
                 </>
             ) : (
                 <>

@@ -5,6 +5,7 @@ import { Contract } from 'web3-eth-contract'
 import { abi as ERC20_abi } from '@openzeppelin/contracts/build/contracts/ERC20.json'
 import abis from './abis'
 import { utils } from 'web3'
+import { isAddress } from 'web3-validator'
 
 export interface FormDetails {
     amount: string,
@@ -126,7 +127,7 @@ const ERC20: React.FC<{
             {contract === undefined ? (
                 <>  
                     <label htmlFor={'tokenContractAddress'}>
-                        Enter the address of the token contract:
+                        {'Enter the address of the token contract:'}
                         <input
                             id={'tokenContractAddress'}
                             type='text'
@@ -139,7 +140,7 @@ const ERC20: React.FC<{
                         {`Enter the abi of the token contract:`} <i>{`(optional)`}</i>
                         <textarea id={'contractAbi'} onChange={e => handleChange(e, 'contractAbi')} value={formDetails.contractAbi} disabled={formDetails.loading} />
                     </label>
-                    <button onClick={handleSetContract} disabled={formDetails.loading || formDetails.contractAddress === ''}>{'set contract'}</button>
+                    <button onClick={handleSetContract} disabled={formDetails.loading || !isAddress(formDetails.contractAddress)}>{'set contract'}</button>
                 </>
             ) : (
                 <>

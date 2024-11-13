@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Menu: React.FC<{ links: string[] }> = ({ links }) => {
     return (
         <ul>
             {links.map((link: string, i: number) =>
-                <li key={i}><Link to={`/${link}`}>{link}</Link></li>
+                <li key={i}><NavLink to={`/${link}`} style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none',
+                    fontWeight: isActive ? 'bold' : 'normal'
+                  })}>{link}</NavLink></li>
             )}
         </ul>
     )
