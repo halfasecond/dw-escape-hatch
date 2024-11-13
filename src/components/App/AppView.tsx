@@ -74,8 +74,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
 
     if (!walletAddress) {
         return (
-            <Router basename={import.meta.env.BASE_URL || '/dw-escape-hatch'}>
-                {console.log(import.meta.env.BASE_URL)}
+            <Router basename={'/dw-escape-hatch'}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/" replace />} />
                     <Route path="/" element={
