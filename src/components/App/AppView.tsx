@@ -23,10 +23,8 @@ const core: Contract<AbiFragment[]> = getContract(Contracts.Core.abi, Contracts.
 const sale: Contract<AbiFragment[]> = getContract(Contracts.Sale.abi, Contracts.Sale.addr)
 const sire: Contract<AbiFragment[]> = getContract(Contracts.Sire.abi, Contracts.Sire.addr)
 
-const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/dw-escape-hatch/'
-console.log("base", import.meta.env.BASE_URL, BASE_URL)
 
-const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: walletAddress, isDapper }) => {
+const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: walletAddress, BASE_URL, isDapper }) => {
     const [contract, setContract] = useState<Contract<AbiFragment[]> | undefined>(undefined)
     const [walletDetails, setWalletDetails] = useState<WalletDetails>({
         dapperWallet: undefined,

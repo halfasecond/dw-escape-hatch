@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import AppView from './AppView'
 
+const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/dw-escape-hatch/'
 
 function App() {
     const [loggedIn, setLoggedIn] = useState<string | undefined>(undefined)
@@ -29,7 +30,7 @@ function App() {
 
     const handleSignOut = async () => handleLogout()
 
-    return <AppView {...{ handleSignIn, handleSignOut, loggedIn, isDapper }} />
+    return <AppView {...{ handleSignIn, handleSignOut, loggedIn, BASE_URL, isDapper }} />
 }
 
 export default App
