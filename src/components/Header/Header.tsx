@@ -8,7 +8,7 @@ const Header: React.FC<AuthProps> = ({ loggedIn, handleSignIn, handleSignOut, is
             <h1><Link to={'/'}>{'Escape Hatch POC'}</Link></h1>
             {loggedIn ? (
                 <button onClick={handleSignOut}>
-                    <WalletLogo logo={isDapper ? 'dapper' : 'metamask'} {...BASE_URL} />
+                    <WalletLogo logo={isDapper ? 'dapper' : 'metamask'} {...{ BASE_URL }} />
                     {'Sign out'}
                 </button>
             ) : (
