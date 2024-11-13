@@ -17,7 +17,7 @@ beforeEach(() => {
 test('renders header with sign-in button when not logged in', () => {
     const { getByText } = render(
         <BrowserRouter>
-            <Header loggedIn={''} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} />
+            <Header loggedIn={''} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} BASE_URL={'/'} />
         </BrowserRouter>
     )
     expect(getByText('Escape Hatch POC')).toBeTruthy()
@@ -27,7 +27,7 @@ test('renders header with sign-in button when not logged in', () => {
 test('renders header with sign-out button when logged in', () => {
     const { getByText } = render(
         <BrowserRouter>
-            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} />
+            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} BASE_URL={'/'} />
         </BrowserRouter>
     )
     expect(getByText('Escape Hatch POC')).toBeTruthy()
@@ -37,7 +37,7 @@ test('renders header with sign-out button when logged in', () => {
 test('calls handleSignIn when sign-in button is clicked', () => {
     const { getByText } = render(
         <BrowserRouter>
-            <Header loggedIn={''} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} />
+            <Header loggedIn={''} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} BASE_URL={'/'} />
         </BrowserRouter>
     )
     fireEvent.click(getByText('Sign in'))
@@ -47,7 +47,7 @@ test('calls handleSignIn when sign-in button is clicked', () => {
 test('calls handleSignOut when sign-out button is clicked', () => {
     const { getByText } = render(
         <BrowserRouter>
-            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} />
+            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} BASE_URL={'/'} />
         </BrowserRouter>
     )
     fireEvent.click(getByText('Sign out'))
@@ -57,7 +57,7 @@ test('calls handleSignOut when sign-out button is clicked', () => {
 test('displays Dapper logo when isDapper is true', () => {
     const { getByAltText } = render(
         <BrowserRouter>
-            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={true} />
+            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={true} BASE_URL={'/'} />
         </BrowserRouter>
     )
     expect(getByAltText('dapper wallet')).toBeTruthy()
@@ -66,7 +66,7 @@ test('displays Dapper logo when isDapper is true', () => {
 test('displays Metamask logo when isDapper is false', () => {
     const { getByAltText } = render(
         <BrowserRouter>
-            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} />
+            <Header loggedIn={'0x456'} handleSignIn={handleSignIn} handleSignOut={handleSignOut} isDapper={false} BASE_URL={'/'} />
         </BrowserRouter>
     )
     expect(getByAltText('metamask')).toBeTruthy()

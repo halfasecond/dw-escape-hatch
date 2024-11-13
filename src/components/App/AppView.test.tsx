@@ -45,7 +45,8 @@ test('renders AppView without wallet address', () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={undefined} 
-            isDapper={false} 
+            isDapper={false}
+            BASE_URL={'/'}
         />
     )
     expect(getByText('How to use this app')).toBeTruthy()
@@ -57,7 +58,8 @@ test('renders Authorization component when Dapper wallet is used', async () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={true} 
+            isDapper={true}
+            BASE_URL={'/'}
         />
     )
     await waitFor(async () => {
@@ -78,7 +80,8 @@ test('calls handleSetDapperWallet when the wallet address is set', async () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={true} 
+            isDapper={true}
+            BASE_URL={'/'}
         />
     )
     await waitFor(async () => {
@@ -98,7 +101,8 @@ test('renders child components for Metamask users', async () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={false} 
+            isDapper={false}
+            BASE_URL={'/'}
         />
     )
     await waitFor(async () => {
@@ -112,7 +116,8 @@ test('handles input change', async () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={false} 
+            isDapper={false}
+            BASE_URL={'/'}
         />
     )
     const input = getByRole('textbox') as HTMLInputElement
@@ -128,7 +133,8 @@ test('displays Dapper wallet once set by the user', async () => {
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={false} 
+            isDapper={false}
+            BASE_URL={'/'}
         />
     )
     
@@ -149,7 +155,8 @@ test('shows alert if there was a revert / error while setting Dapper wallet', as
             handleSignIn={mockHandleSignIn} 
             handleSignOut={mockHandleSignOut} 
             loggedIn={mockWalletAddress} 
-            isDapper={false} 
+            isDapper={false}
+            BASE_URL={'/'}
         />
     )
     
