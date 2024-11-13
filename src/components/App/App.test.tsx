@@ -7,7 +7,6 @@ const mockEnable = vi.fn()
 const mockEthereum = {
     enable: mockEnable,
     isDapper: true, // Set it to true or false based on the test case
-    // Mock the missing methods
     on: vi.fn(),  // Method to listen to events (mocking basic behavior)
     off: vi.fn(), // Method to remove event listeners (mocking basic behavior)
     request: vi.fn().mockResolvedValue({}), // Mock the `request` method (it can return any value based on the method)
