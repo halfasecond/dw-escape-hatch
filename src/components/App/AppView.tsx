@@ -24,7 +24,7 @@ const sale: Contract<AbiFragment[]> = getContract(Contracts.Sale.abi, Contracts.
 const sire: Contract<AbiFragment[]> = getContract(Contracts.Sire.abi, Contracts.Sire.addr)
 
 const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/dw-escape-hatch/'
-console.log("base", BASE_URL)
+console.log("base", import.meta.env.BASE_URL, BASE_URL)
 
 const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: walletAddress, isDapper }) => {
     const [contract, setContract] = useState<Contract<AbiFragment[]> | undefined>(undefined)
@@ -73,16 +73,14 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
         }
     }
 
-    const formatPath = (path: string) => BASE_URL + path
-
     const isAuthorizedCosignerPair = () => walletDetails.cosigner?.toLowerCase() === walletAddress?.toLowerCase()
 
     if (!walletAddress) {
         return (
             <Router basename={BASE_URL}>
                 <Routes>
-                    <Route path={formatPath('*')} element={<Navigate to={BASE_URL} replace />} />
-                    <Route path={formatPath('/')} element={
+                    <Route path="*" element={<Navigate to={BASE_URL} replace />} />
+                    <Route path="/" element={
                         <>  
                             <Styled.Header>
                                 <Header {...{ handleSignIn, handleSignOut, isDapper }} loggedIn={undefined} />
@@ -121,12 +119,12 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
                             <>
                                 <Menu links={['transactions', 'cryptokitties', 'ERC20', 'ERC721', 'authorizations']} />
                                 <Routes>
-                                    <Route path={formatPath('/')} element={<p />} />
-                                    <Route path={formatPath('/transactions')} element={<EthTransactions {...{ walletAddress, invokeTx }} />} />
-                                    <Route path={formatPath('/erc20')} element={<ERC20 {...{ walletAddress, invokeTx }} dapperWalletAddress={walletDetails.dapperWallet} />} />
-                                    <Route path={formatPath('/erc721')} element={<ERC721 {...{ walletAddress, invokeTx }} dapperWalletAddress={walletDetails.dapperWallet} />} />
-                                    <Route path={formatPath('/cryptokitties')} element={<CryptoKitties {...{ walletAddress, invokeTx, core, sale, sire }} dapperWalletAddress={walletDetails.dapperWallet} />} />
-                                    <Route path={formatPath('/authorizations')} element={<Authorizations {...{ walletAddress, walletDetails }} />} />
+                                    <Route path={'/'} element={<p />} />
+                                    <Route path={'/transactions'} element={<EthTransactions {...{ walletAddress, invokeTx }} />} />
+                                    <Route path={'/erc20'} element={<ERC20 {...{ walletAddress, invokeTx }} dapperWalletAddress={walletDetails.dapperWallet} />} />
+                                    <Route path={'/erc721'} element={<ERC721 {...{ walletAddress, invokeTx }} dapperWalletAddress={walletDetails.dapperWallet} />} />
+                                    <Route path={'/cryptokitties'} element={<CryptoKitties {...{ walletAddress, invokeTx, core, sale, sire }} dapperWalletAddress={walletDetails.dapperWallet} />} />
+                                    <Route path={'/authorizations'} element={<Authorizations {...{ walletAddress, walletDetails }} />} />
                                 </Routes>
                             </>
                         )}
