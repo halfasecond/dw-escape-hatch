@@ -100,7 +100,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
         <Router basename={BASE_URL}>
             <ScrollToTop />
             <Styled.Header>
-                <Header {...{ handleSignIn, handleSignOut, isDapper }} loggedIn={walletAddress} />
+                <Header {...{ handleSignIn, handleSignOut, isDapper, BASE_URL }} loggedIn={walletAddress} />
             </Styled.Header>
             <hr />
             <Styled.Main>
