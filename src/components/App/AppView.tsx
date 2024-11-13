@@ -23,6 +23,8 @@ const core: Contract<AbiFragment[]> = getContract(Contracts.Core.abi, Contracts.
 const sale: Contract<AbiFragment[]> = getContract(Contracts.Sale.abi, Contracts.Sale.addr)
 const sire: Contract<AbiFragment[]> = getContract(Contracts.Sire.abi, Contracts.Sire.addr)
 
+const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/dw-escape-hatch'
+
 const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: walletAddress, isDapper }) => {
     const [contract, setContract] = useState<Contract<AbiFragment[]> | undefined>(undefined)
     const [walletDetails, setWalletDetails] = useState<WalletDetails>({
@@ -74,9 +76,9 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
 
     if (!walletAddress) {
         return (
-            <Router basename={'/dw-escape-hatch'}>
+            <Router basename={BASE_URL}>
                 <Routes>
-                    <Route path="*" element={<Navigate to="/" replace />} />
+                    <Route path="*" element={<Navigate to={BASE_URL} replace />} />
                     <Route path="/" element={
                         <>  
                             <Styled.Header>
@@ -94,7 +96,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
     }
 
     return (
-        <Router>
+        <Router basename={BASE_URL}>
             <ScrollToTop />
             <Styled.Header>
                 <Header {...{ handleSignIn, handleSignOut, isDapper }} loggedIn={walletAddress} />
