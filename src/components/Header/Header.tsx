@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { AuthProps } from 'types/auth'
 
-const Header: React.FC<AuthProps> = ({ loggedIn, handleSignIn, handleSignOut, isDapper }) => {
+const Header: React.FC<AuthProps> = ({ loggedIn, handleSignIn, handleSignOut, isDapper, BASE_URL }) => {
     return (
         <>
             <h1><Link to={'/'}>{'Escape Hatch POC'}</Link></h1>
@@ -20,7 +20,7 @@ const Header: React.FC<AuthProps> = ({ loggedIn, handleSignIn, handleSignOut, is
 }
 
 const WalletLogo: React.FC<{logo: string }> = ({ logo }) => logo === 'dapper'
-    ? <img src={'/dapper-wallet.png'} alt={'dapper wallet'} />
-    : <img src={'/metamask.svg'} alt={'metamask'} />
+    ? <img src={BASE_URL + '/dapper-wallet.png'} alt={'dapper wallet'} />
+    : <img src={BASE_URL + '/metamask.svg'} alt={'metamask'} />
 
 export default Header

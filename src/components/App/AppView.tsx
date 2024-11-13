@@ -83,7 +83,7 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
                     <Route path="/" element={
                         <>  
                             <Styled.Header>
-                                <Header {...{ handleSignIn, handleSignOut, isDapper }} loggedIn={undefined} />
+                                <Header {...{ handleSignIn, handleSignOut, isDapper, BASE_URL }} loggedIn={undefined} />
                             </Styled.Header>
                             <hr />
                             <Styled.Main>

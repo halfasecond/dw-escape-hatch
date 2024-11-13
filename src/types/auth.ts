@@ -3,6 +3,7 @@ export interface AuthProps {
     handleSignIn: () => void;
     handleSignOut: () => void;
     isDapper: boolean;
+    BASE_URL: string;
 }
 
 export interface WalletDetails {
