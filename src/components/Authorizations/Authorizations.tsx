@@ -29,7 +29,7 @@ const Authorizations: React.FC<{ walletAddress: string, walletDetails: WalletDet
             const contract = getContract(dapperWalletAbi, walletDetails.dapperWallet)
             const callData = contract.methods.setAuthorized(formDetails.newAuthorizedInput, formDetails.newAuthorizedInput).encodeABI()
             try {
-                const { data } = await prepareInvokeData(walletDetails.dapperWallet, callData)
+                const { data } = await prepareInvokeData(walletDetails.dapperWallet, callData, "0")
                 await contract.methods.invoke0(data).send({ from: walletAddress })
                 setAuthorizationSuccess(true)
             } catch (error) {

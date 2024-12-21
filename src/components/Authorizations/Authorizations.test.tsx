@@ -63,7 +63,7 @@ test('calls handleAddAuthorized when button is clicked', async () => {
         fireEvent.click(button)
     })
     const methodCall = getContract(abi, mockWalletDetails.dapperWallet).methods.setAuthorized('0x456', '0x456').encodeABI()
-    const { data } = await prepareInvokeData(mockWalletDetails.dapperWallet, methodCall)
+    const { data } = await prepareInvokeData(mockWalletDetails.dapperWallet, methodCall, '0')
     expect(getContract(abi, mockWalletDetails.dapperWallet).methods.invoke0).toHaveBeenCalledWith(data)
     expect(getContract(abi, mockWalletDetails.dapperWallet).methods.invoke0().send).toHaveBeenCalledWith({ from: '0x123' })
 })
