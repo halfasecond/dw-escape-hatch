@@ -46,11 +46,11 @@ export const getAuthVersion = async (contract: any) => {
 // Prepare invoke data with correctly formatted hex string
 export const prepareInvokeData = async (
     contractAddress: string,
-    functionCall: string
+    functionCall: string,
+    amount: string | "0"
 ) => {
     try {
         const revertFlag = 1
-        const amount = "0" // Zero amount in hex
         const functionDataBuff = new Uint8Array(web3.utils.hexToBytes(functionCall.replace("0x", "")))
         const dataBuffer = txData(revertFlag, contractAddress, amount, functionDataBuff)
 

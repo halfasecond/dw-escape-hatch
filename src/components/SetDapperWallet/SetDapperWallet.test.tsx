@@ -16,6 +16,8 @@ beforeEach(() => {
     vi.clearAllMocks()
 })
 
+const mockWalletAddress = '0x1234567890123456789012345678901234567890'
+
 test('renders SetDapperWallet component with no Dapper Wallet set', () => {
     const { getByText, getByRole } = render(
         <SetDapperWallet 
@@ -72,7 +74,7 @@ test('handles input change', async () => {
         />
     )
     await act(async () => {
-        fireEvent.change(getByRole('textbox'), { target: { value: '0x789' } })
+        fireEvent.change(getByRole('textbox'), { target: { value: mockWalletAddress } })
     })
     expect(handleInputChange).toHaveBeenCalledWith(expect.any(Object), 'dapperWalletInput')
 })
@@ -81,7 +83,7 @@ test('calls handleSave when button is clicked', async () => {
     const { getByText } = render(
         <SetDapperWallet 
             walletAddress="0x123" 
-            walletDetails={{ ...mockWalletDetails, dapperWalletInput: '0x789' }} 
+            walletDetails={{ ...mockWalletDetails, dapperWalletInput: mockWalletAddress }} 
             handleInputChange={handleInputChange} 
             handleSave={handleSave} 
             isCosigner={false} 
@@ -111,7 +113,7 @@ test('button is enabled when dapperWalletInput is not empty', async () => {
     const { getByText } = render(
         <SetDapperWallet 
             walletAddress="0x123" 
-            walletDetails={{ ...mockWalletDetails, dapperWalletInput: '0x789' }} 
+            walletDetails={{ ...mockWalletDetails, dapperWalletInput: mockWalletAddress }} 
             handleInputChange={handleInputChange} 
             handleSave={handleSave} 
             isCosigner={false} 

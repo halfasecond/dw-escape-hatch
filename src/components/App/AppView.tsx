@@ -62,10 +62,10 @@ const AppView: React.FC<AuthProps> = ({ handleSignIn, handleSignOut, loggedIn: w
         if (typeof walletDetails.dapperWallet === 'string') {
             const contract = getContract(dapperWalletAbi, walletDetails.dapperWallet)
             const callData = method ? method.encodeABI() : '0x'
-            const { data } = await prepareInvokeData(address, callData)
+            const value = amount ? amount : "0x0"
+            const { data } = await prepareInvokeData(address, callData, value)
             const gas = await contract.methods.invoke0(data).estimateGas()
-            const value = amount ? amount : "0x0" // TODO: this is attempting to support eth transfers (if amount != undefined) but not working as invoke0 isn't payable
-            await contract.methods.invoke0(data).send({ from: walletAddress, gas: gas.toString(), value })
+            await contract.methods.invoke0(data).send({ from: walletAddress, gas: gas.toString() })
         } else {
             alert('Unable to complete transaction')
         }
