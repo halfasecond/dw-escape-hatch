@@ -56,13 +56,16 @@ test('calls handleAddAuthorized when button is clicked', async () => {
         <Authorizations walletAddress="0x123" walletDetails={mockWalletDetails} />
     )
     const input = getByRole('textbox')
-    fireEvent.change(input, { target: { value: '0x456' } }) // Change input value
+    fireEvent.change(input, { target: { value: '0x1234567890123456789012345678901234567890' } }) // Change input value
 
     const button = getByText('Set new authorized address')
     await act(async () => {
         fireEvent.click(button)
     })
-    const methodCall = getContract(abi, mockWalletDetails.dapperWallet).methods.setAuthorized('0x456', '0x456').encodeABI()
+    const methodCall = getContract(abi, mockWalletDetails.dapperWallet).methods.setAuthorized(
+        '0x1234567890123456789012345678901234567890',
+        '0x1234567890123456789012345678901234567890'
+    ).encodeABI()
     const { data } = await prepareInvokeData(mockWalletDetails.dapperWallet, methodCall, '0')
     expect(getContract(abi, mockWalletDetails.dapperWallet).methods.invoke0).toHaveBeenCalledWith(data)
     expect(getContract(abi, mockWalletDetails.dapperWallet).methods.invoke0().send).toHaveBeenCalledWith({ from: '0x123' })
@@ -73,14 +76,14 @@ test('displays success message after adding an authorized address', async () => 
         <Authorizations walletAddress="0x123" walletDetails={mockWalletDetails} />
     )
     const input = getByRole('textbox')
-    fireEvent.change(input, { target: { value: '0x456' } })
+    fireEvent.change(input, { target: { value: '0x1234567890123456789012345678901234567890' } })
     const button = getByText('Set new authorized address')
     await act(async () => {
         fireEvent.click(button)
     })
     await waitFor(() => {
         expect(getByText('Success! New authorized / cosigner pair for this address is:')).toBeTruthy()
-        expect(getByText('0x456')).toBeTruthy()
+        expect(getByText('0x1234567890123456789012345678901234567890')).toBeTruthy()
     })
 })
 
@@ -97,7 +100,7 @@ test('enables the button when there is input', () => {
         <Authorizations walletAddress="0x123" walletDetails={mockWalletDetails} />
     )
     const input = getByRole('textbox')
-    fireEvent.change(input, { target: { value: '0xabc' } })
+    fireEvent.change(input, { target: { value: '0x1234567890123456789012345678901234567890' } })
     const button = getByRole('button', { name: /set new authorized address/i }) as HTMLButtonElement
     expect(button.disabled).toBeFalsy()
 })
@@ -107,7 +110,7 @@ test('alerts user if there was an error / revert when invoking setAuthorized', a
         <Authorizations walletAddress="0x123" walletDetails={mockWalletDetails} />
     )
     const input = getByRole('textbox')
-    fireEvent.change(input, { target: { value: '0x456' } })
+    fireEvent.change(input, { target: { value: '0x1234567890123456789012345678901234567890' } })
     const button = getByText('Set new authorized address')
     const mockContract = getContract(abi, mockWalletDetails.dapperWallet) as any
     mockContract.methods.invoke0.mockImplementation(() => Promise.reject(new Error('Transfer revert error')))

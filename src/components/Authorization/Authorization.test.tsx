@@ -62,10 +62,10 @@ test('calls handleSetAuthorized when button is clicked', async () => {
     const input = getByRole('textbox', { name: /Add new authorization:/i })
     const button = getByRole('button', { name: /Set new authorized address/i })
     await act(async () => {
-        fireEvent.change(input, { target: { value: '0xabcdef' } })
+        fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
         fireEvent.click(button)
     })
-    expect(contract.methods.setAuthorized).toHaveBeenCalledWith('0xabcdef', '0xabcdef')
+    expect(contract.methods.setAuthorized).toHaveBeenCalledWith('0x4567890123456789012345678901234567890123', '0x4567890123456789012345678901234567890123')
     expect(contract.methods.setAuthorized().send).toHaveBeenCalledWith({ from: mockWalletAddress, value: "0x0" })
 })
 
@@ -79,7 +79,7 @@ test('alerts user if there is an error while setting new authorization', async (
     // Mock the setAuthorized method to reject
     contract.methods.setAuthorized().send.mockRejectedValueOnce(new Error('Error while setting new authorization'))
     await act(async () => {
-        fireEvent.change(input, { target: { value: '0xabcdef' } })
+        fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
         fireEvent.click(button)
     })
     expect(window.alert).toHaveBeenCalledWith('Error while setting new authorization')

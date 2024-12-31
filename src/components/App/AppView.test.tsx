@@ -67,10 +67,10 @@ test('renders Authorization component when Dapper wallet is used', async () => {
         const button = getByRole('button', { name: /Set new authorized address/i })
         await act(async () => {
             fireEvent.click(button)
-            fireEvent.change(input, { target: { value: '0xabcdef' } });
+            fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } });
         })
         expect(getByText('Success! New authorized / cosigner pair for this address is:')).toBeTruthy()
-        expect(getByText('0xabcdef')).toBeTruthy()
+        expect(getByText('0x4567890123456789012345678901234567890123')).toBeTruthy()
     })
 })
 
@@ -88,7 +88,7 @@ test('calls handleSetDapperWallet when the wallet address is set', async () => {
         const input = getByRole('textbox', { name: /Add new authorization:/i })
         const button = getByText('Set new authorized address')
         await act(async () => {
-            fireEvent.change(input, { target: { value: '0xNewDapperWalletAddress' } })
+            fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
             fireEvent.click(button)
         })
         expect(getByText('Success! New authorized / cosigner pair for this address is:')).toBeTruthy()
@@ -122,9 +122,9 @@ test('handles input change', async () => {
     )
     const input = getByRole('textbox') as HTMLInputElement
     await act(async () => {
-        fireEvent.change(input, { target: { value: '0xabc' } })
+        fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
     })
-    expect(input.value).toBe('0xabc')
+    expect(input.value).toBe('0x4567890123456789012345678901234567890123')
 })
 
 test('displays Dapper wallet once set by the user', async () => {
@@ -142,7 +142,7 @@ test('displays Dapper wallet once set by the user', async () => {
         const input = getByRole('textbox') as HTMLInputElement
         const button = getByText('Set Dapper Wallet')
         await act(async () => {
-            fireEvent.change(input, { target: { value: '0xNewDapperWalletAddress' } })
+            fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
             fireEvent.click(button)
         })
         expect(getByText('The wallet you are signed in with is authorized for the Dapper Legacy wallet you provided.')).toBeTruthy()
@@ -165,7 +165,7 @@ test('shows alert if there was a revert / error while setting Dapper wallet', as
         const button = getByText('Set Dapper Wallet')
         await act(async () => {
             vi.mocked(getCosignerForAuthorized).mockRejectedValueOnce(new Error('Transfer revert error'))
-            fireEvent.change(input, { target: { value: '0xNewDapperWalletAddress' } })
+            fireEvent.change(input, { target: { value: '0x4567890123456789012345678901234567890123' } })
             fireEvent.click(button)
             expect(window.alert).toHaveBeenCalledWith('Unable to set Dapper wallet address')
         })
