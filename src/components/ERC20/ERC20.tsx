@@ -68,7 +68,7 @@ const ERC20: React.FC<{
                 ? contract.methods.safeTransferFrom(dapperWalletAddress, walletAddress, amount)
                 : contract.methods.transfer(walletAddress, amount)
             try {
-                await invokeTx(formDetails.contractAddress, methodCall, '0x0')
+                await invokeTx(formDetails.contractAddress, methodCall, '0')
                 setFormDetails(prevState => ({ ...prevState, transferSuccess: true }))
             } catch (error) {
                 console.log(error)

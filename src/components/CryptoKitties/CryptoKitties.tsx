@@ -99,7 +99,7 @@ const CryptoKitties: React.FC<{
         const address = formDetails.forSale ? Contracts['Sale'].addr : Contracts['Sire'].addr
         const methodCall = contract.methods.cancelAuction(formDetails.kittyId.toString())
         try {
-            await invokeTx(address, methodCall, '0x0')
+            await invokeTx(address, methodCall, '0')
             setFormDetails(prevState => ({ ...prevState, forSale: false, forSire: false, auctionCancelled: true }))
         } catch (e) {
             alert('Failed to cancel auction. Please try again.')
@@ -113,7 +113,7 @@ const CryptoKitties: React.FC<{
         const address = Contracts['Core'].addr
         const methodCall = core.methods.transfer(walletAddress, formDetails.kittyId)
         try {
-            await invokeTx(address, methodCall, '0x0')
+            await invokeTx(address, methodCall, '0')
             setFormDetails(prevState => ({ ...prevState, transferrable: false, transferSuccess: true }))
         } catch (e) {
             console.log(e)

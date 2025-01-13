@@ -47,7 +47,7 @@ export const getAuthVersion = async (contract: any) => {
 export const prepareInvokeData = async (
     contractAddress: string,
     functionCall: string,
-    amount: string | "0"
+    amount: string,
 ) => {
     try {
         const revertFlag = 1

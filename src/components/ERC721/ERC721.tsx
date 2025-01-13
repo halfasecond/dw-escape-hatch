@@ -92,7 +92,7 @@ const ERC721: React.FC<{
         if (contract) {
             const methodCall = contract.methods.safeTransferFrom(dapperWalletAddress, walletAddress, formDetails.tokenId)
             try {
-                await invokeTx(formDetails.contractAddress, methodCall, '0x0')
+                await invokeTx(formDetails.contractAddress, methodCall, '0')
                 setFormDetails(prevState => ({ ...prevState, transferrable: false, transferSuccess: true }))
             } catch (e) {
                 alert('Failed to transfer. Please try again')
