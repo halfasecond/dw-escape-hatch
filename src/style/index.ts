@@ -41,9 +41,12 @@ export const Header = styled.header`
 `
 
 export const Main = styled.main`
-    width: 95%;
-    min-width: 320px;
-    margin-left: 2.5%;
+    width: 90%;
+    @media (min-width: ${breaks['md']}) {
+        width: 94%;
+    }
+    margin: 0 auto;
+    max-width: 1592px;
     margin-top: 40px;
     > h1 {
         margin: ${gutters['xxl']} 0 ${gutters['lg']};
