@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import AppView from './AppView'
 
-const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/dw-escape-hatch/'
+const BASE_URL = import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/'
 
 function App() {
     const [loggedIn, setLoggedIn] = useState<string | undefined>(undefined)

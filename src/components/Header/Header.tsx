@@ -20,7 +20,7 @@ const Header: React.FC<AuthProps> = ({ loggedIn, handleSignIn, handleSignOut, is
 }
 
 const WalletLogo: React.FC<{logo: string, BASE_URL: string }> = ({ logo, BASE_URL }) => logo === 'dapper'
-    ? <img src={BASE_URL + '/dapper-wallet.png'} alt={'dapper wallet'} />
-    : <img src={BASE_URL + '/metamask.svg'} alt={'metamask'} />
+    ? <img src={BASE_URL + 'dapper-wallet.png'} alt={'dapper wallet'} />
+    : <img src={BASE_URL + 'metamask.svg'} alt={'metamask'} />
 
 export default Header
